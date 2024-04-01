@@ -1,0 +1,61 @@
+import random
+
+# Function to determine the winner based on the game rules
+def determine_winner(player_choice, computer_choice):
+    # Tie case
+    if player_choice == computer_choice:
+        return "It's a tie!"
+
+    # Cases where player wins
+    if player_choice == 'rock':
+        if computer_choice == 'scissors':
+            return "Player wins! Rock smashes scissors."
+        else:  # computer_choice == 'paper'
+            return "Computer wins! Paper covers rock."
+
+    elif player_choice == 'paper':
+        if computer_choice == 'rock':
+            return "Player wins! Paper covers rock."
+        else:  # computer_choice == 'scissors'
+            return "Computer wins! Scissors cuts paper."
+
+    elif player_choice == 'scissors':
+        if computer_choice == 'paper':
+            return "Player wins! Scissors cuts paper."
+        else:  # computer_choice == 'rock'
+            return "Computer wins! Rock smashes scissors."
+
+# Main function to run the game
+def main():
+    # Possible choices for the game
+    choices = ['rock', 'paper', 'scissors']
+
+    # Main game loop
+    while True:
+        # Player inputs their choice
+        player_choice = input("Enter your choice (rock, paper, scissors): ").lower()
+        
+        # Validate player's choice
+        while player_choice not in choices:
+            print("Invalid choice. Please enter rock, paper, or scissors.")
+            player_choice = input("Enter your choice (rock, paper, scissors): ").lower()
+
+        # Computer randomly selects its choice
+        computer_choice = random.choice(choices)
+
+        # Print choices
+        print("Player chooses:", player_choice)
+        print("Computer chooses:", computer_choice)
+
+        # Determine and print the winner
+        print(determine_winner(player_choice, computer_choice))
+
+        # Ask if the player wants to play again
+        play_again = input("Do you want to play again? (yes/no): ").lower()
+        if play_again != 'yes':
+            print("Thanks for playing!")
+            break
+
+# Run the main function if this script is executed
+if __name__ == "__main__":
+    main()
